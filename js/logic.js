@@ -37,5 +37,21 @@ function createNewTask(text, container) {
     const newTaskImg = createElement("img", "todo__new-task-img", newTask);
     newTaskImg.src = "./assets/icons/trash noAct.svg";
     newTaskImg.alt = "Trash icon";
+
+    newTaskImg.addEventListener("mouseenter", () => {
+        newTaskImg.src = "./assets/icons/trash act.svg";
+      });
+      
+    newTaskImg.addEventListener("mouseleave", () => {
+        newTaskImg.src = "./assets/icons/trash noAct.svg";
+      });
+
+    newTaskImg.addEventListener ("click", () => {
+        newTask.remove();
+
+        if (container.children.length === 0) {
+            emptyStorage.classList.remove("hidden");
+          }
+    })
 }
   }
