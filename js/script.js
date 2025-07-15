@@ -1,49 +1,48 @@
-function createHeader () {
+(function createHeader () {
 const header = document.createElement("div");
 header.classList.add("header");
 
 const logo = document.createElement("div");
 logo.classList.add("header__logo");
 
-const img = document.createElement("img")
-img.src = "assets/icons/Logo.svg";
-img.alt = "Логотип";
+const logoImg = document.createElement("img")
+logoImg.src = "assets/icons/Logo.svg";
+logoImg.alt = "Логотип";
 
-logo.appendChild(img)
+logo.appendChild(logoImg)
 header.appendChild(logo);
 document.body.appendChild(header);
-}
+})();
 
-createHeader();
-
-const main = document.createElement("main")
-main.classList.add("todo")
-document.body.appendChild(main);
-
-function createSection(parent, sectionClass) {
+function createSection(parent, sectionClass, containerExtraClass = "") {
     const section = document.createElement("section");
     section.classList.add(sectionClass);
   
     const container = document.createElement("div");
     container.classList.add("container");
   
+    if (containerExtraClass) {
+        container.classList.add(containerExtraClass);
+      }
+
     section.appendChild(container);
     parent.appendChild(section);
   
     return container; 
-}
-
-  const formContainer = createSection(main, "todo__add-task-form");
-  const countContainer = createSection(main, "todo__tasks-count");
-  const storageContainer = createSection(main, "todo__tasks-storage");
-  const filterContainer = createSection(main, "todo__tasks-filter");
+};
 
 function createElement (tag, className, parent) {
     const el = document.createElement(tag);
     if (className) el.classList.add(className);
     if (parent) parent.appendChild(el);
     return el;
-}
+};
+
+const main = createElement("main", "todo", document.body);
+const formContainer = createSection(main, "todo__add-tasks-form");
+const countContainer = createSection(main, "todo__tasks-count", "todo__tasks-count-container");
+const storageContainer = createSection(main, "todo__tasks-storage");
+const filterContainer = createSection(main, "todo__tasks-filter", "todo__tasks-filter-container");
 
 const form = createElement("form", "form", formContainer);
 const addTaskInput = createElement("input", "form__input", form);
@@ -57,12 +56,36 @@ addTaskInput.autocomplete = "on";
 const addTaskBtn = createElement("button", "form__btn", form);
 addTaskBtn.textContent = "Criar";
 
-fetch("assets/icons/plus.svg")
-  .then(res => res.text())
-  .then(svg => {
-    const wrapper = document.createElement("span");
-    wrapper.innerHTML = svg;
-    wrapper.classList.add("btn__icon");
-    button.appendChild(wrapper);
-    addTaskBtn.appendChild(wrapper);
+const addTaskBtnImg = createElement("img", null, addTaskBtn);
+addTaskBtnImg.src = "/assets/icons/icon plus.svg";
+addTaskBtnImg.alt = "Icon plus";
+
+const allTasksCount = createElement("p", "todo__tasks-count-all", countContainer);
+allTasksCount.textContent = "Tarefas criadas";
+
+const doneTasksCount = createElement("p","todo__tasks-count-done", countContainer);
+doneTasksCount.textContent = "Concludas";
+
+const allTasksCountBadge = createElement("span", "todo__tasks-count-badge", allTasksCount);
+allTasksCountBadge.textContent = "0";
+
+const doneTasksCountBadge = createElement("span", "todo__tasks-count-badge", doneTasksCount);
+doneTasksCountBadge.textContent = "0 de 0";
+
+const emptyStorage = createElement("div", "todo__tasks-empty", storageContainer);
+
+const emptyStorageImg = createElement("img", "todo__tasks-empty-img", emptyStorage);
+emptyStorageImg.src = "/assets/icons/Clipboard.svg";
+emptyStorageImg.alt = "clipboard icon";
+
+const emptyStorageText1 = createElement("p", "todo__tasks-empty-text-1", emptyStorage);
+emptyStorageText1.textContent = "Você ainda não tem tarefas cadastradas";
+
+const emptyStorageText2 = createElement("p", "todo__tasks-empty-text-2", emptyStorage);
+emptyStorageText2.textContent = "Crie tarefas e organize seus itens a fazer";
+
+
+["Todas", "Activas", "Completadas"].forEach(text => {
+    const btn = createElement("button", "todo__tasks-filter-btn", filterContainer);
+    btn.textContent = text;
   });
