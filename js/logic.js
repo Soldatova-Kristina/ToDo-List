@@ -5,27 +5,12 @@ export function initLogic ({
     allTasksCountBadge,
     doneTasksCountBadge,
     emptyStorage,
-    form,
-    storageContainer, 
     taskContainer
   }) {
 
-    let totalTasks = 0;
-    let completedTasks = 0;
 
-    addTaskBtn.addEventListener("click", (e) => {
-    e.preventDefault(); 
-    
-    if (addTaskInput.value.trim() === "") {
-        alert ("Adicione uma tarefa");
-        return
-    } else {
-        emptyStorage.classList.add("hidden");
-        createNewTask(addTaskInput.value.trim(),taskContainer); 
-        addTaskInput.value = "";
-    }
-
-});
+let totalTasks = 0;
+let completedTasks = 0;
 
 function updateCounter () {
     allTasksCountBadge.textContent = totalTasks;
@@ -80,4 +65,18 @@ function createNewTask(text, container) {
           updateCounter();
     })
 }
+
+addTaskBtn.addEventListener("click", (e) => {
+e.preventDefault(); 
+
+if (addTaskInput.value.trim() === "") {
+    alert ("Adicione uma tarefa");
+    return
+} else {
+    emptyStorage.classList.add("hidden");
+    createNewTask(addTaskInput.value.trim(),taskContainer); 
+    addTaskInput.value = "";
+}
+});
+
   }
