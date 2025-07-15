@@ -51,8 +51,6 @@ export function createLayout () {
     addTaskInput.type = "text";
     addTaskInput.name = "task";
     addTaskInput.placeholder = "Adicione uma nova tarefa";
-    addTaskInput.required = true;
-    addTaskInput.autocomplete = "on";
     
     const addTaskBtn = createElement("button", "form__btn", form);
     addTaskBtn.textContent = "Criar";
@@ -85,6 +83,8 @@ export function createLayout () {
     const emptyStorageText2 = createElement("p", "todo__tasks-empty-text-2", emptyStorage);
     emptyStorageText2.textContent = "Crie tarefas e organize seus itens a fazer";
     
+    const taskContainer = createElement("div", "todo__new-task-container", storageContainer);
+
     
     ["Todas", "Activas", "Completadas"].forEach(text => {
         const btn = createElement("button", "todo__tasks-filter-btn", filterContainer);
@@ -98,5 +98,7 @@ export function createLayout () {
         emptyStorage,
         form,
         storageContainer,
+        taskContainer
       };
-}
+
+} 
