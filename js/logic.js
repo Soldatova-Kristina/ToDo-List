@@ -91,7 +91,6 @@ function createNewTask(text, container) {
 
     newTaskImg.addEventListener ("click", () => {
         newTask.remove();
-        completedTasks--;
         totalTasks--;
 
         if (container.children.length === 0) {
