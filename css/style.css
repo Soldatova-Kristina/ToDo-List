@@ -48,6 +48,10 @@
     color: inherit;
   }
   
+  input {
+    color: var(--gray-100);
+    font-size: var(--font-size-additional);
+  }
 
     button, textarea, select {
     font: inherit;
@@ -91,10 +95,13 @@
 
     margin-top: -27px;
 }
+
 .form__input {
+    padding-left: 16px;
     width: 638px;
     height: 54px;
-    
+    letter-spacing: inherit;
+
     background-color: var(--gray-500);
     
     border: 1px solid var(--gray-700);
@@ -102,9 +109,12 @@
 }
 
 .form__input::placeholder {
-    padding-left: 16px;
     font-size: var(--font-size-additional);
-    
+
+}
+
+.form__input:focus {
+    caret-color: var(--gray-100);
 }
 
 .form__btn {
@@ -156,15 +166,23 @@
     border-radius: 12px;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .todo__tasks-empty {
    display: flex;
    justify-content: center;
    align-items: center;
    flex-direction: column;
+
+   border-top: 1px solid var(--gray-400); 
+   border-radius: 8px;
+   margin-top: 23px;
 }
 
 .todo__tasks-empty-img {
-    margin-top: 87px;
+    margin-top: 62px;
 }
 
 .todo__tasks-empty-text-1, .todo__tasks-filter-btn {
@@ -183,7 +201,6 @@
     color: var(--gray-300);
 }
 
-
 .todo__tasks-filter-container {
     display: flex;
     gap: 10px;
@@ -195,7 +212,63 @@
     color: var(--gray-200);
 }
 
+.todo__new-task-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+}
 
+.todo__new-task {
+    display: flex;
+    gap: 12px;
+       
+    height: 72px;
+    background-color: var(--gray-500);
+    color: var(--gray-100);
+    border-radius: var(--border-radius-main);
+}
 
+.todo__check-box {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    flex-shrink: 0;
 
+    margin: 21px 0 0 20px;
+
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--blue);
+    border-radius: 50%; 
+    
+  }
+
+  .todo__check-box:checked {
+    background-color: var(--purple-dark);
+    border-color: var(--purple-dark);
+  }
+  
+  .todo__check-box:checked::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    width: 4px;
+    height: 7px;
+    border: solid var(--gray-100);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  .todo__new-task-content {
+    flex-grow: 1;
+    margin: 18px 0 0 5px;
+    color: var(--gray-100)
+  }
+  
+  .todo__new-task-img {
+    padding-bottom: 13px;
+    margin-right: 20px;
+  }
 
