@@ -113,4 +113,27 @@ if (addTaskInput.value.trim() === "") {
 }
 });
 
+function filterTasks(filter) {
+  const allTasks = document.querySelectorAll(".todo__new-task");
+  allTasks.forEach((task) => {
+    const checkbox = task.querySelector('input[type="checkbox"]');
+    const isChecked = checkbox.checked;
+    if (
+      filter === "Todas" ||
+      (filter === "Activas" && !isChecked) ||
+      (filter === "Completadas" && isChecked)
+    ) {
+      task.style.display = "flex";
+    } else {
+      task.style.display = "none";
+    }
+  });
+}
+
+document.querySelectorAll(".todo__tasks-filter-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    filterTasks(btn.textContent.trim());
+  });
+});
+
   }

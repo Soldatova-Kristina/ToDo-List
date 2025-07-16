@@ -51,7 +51,6 @@ export function createElement (tag, className, parent) {
 export function createLayout () {
     const main = createElement("main", "todo", document.body);
     
-
     const formContainer = createSection(main, "todo__add-tasks-form");
     const countContainer = createSection(main, "todo__tasks-count", "todo__tasks-count-container");
     const storageContainer = createSection(main, "todo__tasks-storage");
@@ -101,7 +100,10 @@ export function createLayout () {
     ["Todas", "Activas", "Completadas"].forEach(text => {
         const btn = createElement("button", "todo__tasks-filter-btn", filterContainer);
         btn.textContent = text;
+        btn.dataset.filter = text; 
       });
+
+
       return {
         addTaskInput,
         addTaskBtn,
