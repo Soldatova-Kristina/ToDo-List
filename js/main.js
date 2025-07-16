@@ -1,7 +1,7 @@
 import { createHeader, createLayout} from "./layout.js";
 import { initLogic } from "./logic.js"
 
-createHeader();
+const { switchTheme, header } = createHeader();
 
 const {
     addTaskInput,
@@ -11,10 +11,12 @@ const {
     emptyStorage,
     form,
     storageContainer, 
-    taskContainer
+    taskContainer, 
   } = createLayout();
   
   initLogic({
+    switchTheme,
+    header, 
     addTaskInput,
     addTaskBtn,
     allTasksCountBadge,
@@ -22,5 +24,5 @@ const {
     emptyStorage,
     form,
     storageContainer,
-    taskContainer
+    taskContainer, 
   });

@@ -9,9 +9,19 @@ export function createHeader () {
     logoImg.src = "assets/icons/Logo.svg";
     logoImg.alt = "Логотип";
     
+    const switchTheme = document.createElement("img");
+    switchTheme.classList.add("todo__switch-theme");
+    switchTheme.src = "/assets/icons/icon dark.png";
+    switchTheme.alt = "Icon dark";
+    switchTheme.style.width = "40px";
+    switchTheme.style.height = "40px";
+
     logo.appendChild(logoImg)
     header.appendChild(logo);
+    header.appendChild(switchTheme)
     document.body.appendChild(header);
+
+    return { switchTheme, header };
     };
     
 export  function createSection(parent, sectionClass, containerExtraClass = "") {
@@ -40,6 +50,8 @@ export function createElement (tag, className, parent) {
     
 export function createLayout () {
     const main = createElement("main", "todo", document.body);
+    
+
     const formContainer = createSection(main, "todo__add-tasks-form");
     const countContainer = createSection(main, "todo__tasks-count", "todo__tasks-count-container");
     const storageContainer = createSection(main, "todo__tasks-storage");
@@ -98,7 +110,7 @@ export function createLayout () {
         emptyStorage,
         form,
         storageContainer,
-        taskContainer
+        taskContainer, 
       };
 
 } 
