@@ -273,7 +273,7 @@
   .todo__new-task-content {
     flex-grow: 1;
     margin: 18px 0 0 5px;
-    color: var(--gray-100)
+    color: var(--gray-100);
   }
   
   .todo__new-task-img {

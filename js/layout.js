@@ -7,12 +7,12 @@ export function createHeader () {
     
     const logoImg = document.createElement("img")
     logoImg.src = "/assets/icons/Logo.svg";
-    logoImg.alt = "Логотип";
+    logoImg.alt = "logo";
     
     const switchTheme = document.createElement("img");
     switchTheme.classList.add("todo__switch-theme");
     switchTheme.src = "/assets/icons/icon-dark.png";
-    switchTheme.alt = "Icon dark";
+    switchTheme.alt = "icon dark";
     switchTheme.style.width = "40px";
     switchTheme.style.height = "40px";
 
@@ -24,7 +24,7 @@ export function createHeader () {
     return { switchTheme, header };
     };
     
-export  function createSection(parent, sectionClass, containerExtraClass = "") {
+export function createSection(parent, sectionClass, containerExtraClass = "") {
         const section = document.createElement("section");
         section.classList.add(sectionClass);
       
@@ -68,7 +68,7 @@ export function createLayout () {
     
     const addTaskBtnImg = createElement("img", null, addTaskBtn);
     addTaskBtnImg.src = "/assets/icons/icon-plus.svg";
-    addTaskBtnImg.alt = "Icon plus";
+    addTaskBtnImg.alt = "icon plus";
     
     const allTasksCount = createElement("p", "todo__tasks-count-all", countContainer);
     allTasksCount.textContent = "Tarefas criadas";
