@@ -1,4 +1,4 @@
-import { createElement, createLayout, createHeader } from "./layout.js";
+import { createElement} from "./layout.js";
 export function initLogic ({
     header,
     switchTheme,
@@ -14,31 +14,58 @@ let isDarkTheme = true;
 let totalTasks = 0;
 let completedTasks = 0;
 
-function updateThemeUI() {
+const themeStyles = {
+  dark: {
+    headerBg: "var(--gray-700)",
+    bodyBg: "var(--gray-600)",
+    bodyColor: "var(--gray-100)",
+    allBadgeBg: "var(--gray-400)",
+    allBadgeColor:  "var(--gray-100)",
+    doneBadgeBg: "var(--gray-400)", 
+    doneBadgeColor: "var(--gray-100)", 
+    inputBg: "var(--gray-500)",
+    inputColor: "var(--gray-100)",
+  }, 
+  light: {
+    headerBg: "var(--gray-200)",
+    bodyBg: "var(--gray-100)",
+    bodyColor: "var(--gray-700)",
+    allBadgeBg: "var(--gray-200)",
+    allBadgeColor:  "var(--gray-700)",
+    doneBadgeBg: "var(--gray-200)", 
+    doneBadgeColor: "var(--gray-700)", 
+    inputBg: "var(--gray-200)",
+    inputColor: "var(--gray-700)",
+  }
+}
+
+function updateThemeUI(isDarkTheme) {
+  const theme = isDarkTheme ? themeStyles.dark : themeStyles.light;
+
   switchTheme.setAttribute("src", isDarkTheme
     ? "/assets/icons/icon-dark.png"
     : "/assets/icons/icon-light.png");
 
-  header.style.backgroundColor = isDarkTheme ? "var(--gray-700)" : "var(--gray-200)";
-  document.body.style.backgroundColor = isDarkTheme ? "var(--gray-600)" : "var(--gray-100)";
-  document.body.style.color = isDarkTheme ? "var(--gray-100)" : "var(--gray-700)";
-  allTasksCountBadge.style.backgroundColor = isDarkTheme ? "var(--gray-400)" : "var(--gray-200)";
-  allTasksCountBadge.style.color = isDarkTheme ? "var(--gray-100)" : "var(--gray-700)";
-  doneTasksCountBadge.style.backgroundColor = isDarkTheme ? "var(--gray-400)" : "var(--gray-200)";
-  doneTasksCountBadge.style.color = isDarkTheme ? "var(--gray-100)" : "var(--gray-700)";
-  addTaskInput.style.backgroundColor = isDarkTheme ? "var(--gray-500)" : "var(--gray-200)";
-  addTaskInput.style.color = isDarkTheme ? "var(--gray-100)" : "var(--gray-700)";
+  header.style.backgroundColor = theme.headerBg;
+  document.body.style.backgroundColor = theme.bodyBg;
+  document.body.style.color = theme.bodyColor;
+  allTasksCountBadge.style.backgroundColor = theme.badgeBg;
+  allTasksCountBadge.style.color = theme.badgeColor;
+  doneTasksCountBadge.style.backgroundColor = theme.badgeBg;
+  doneTasksCountBadge.style.color = theme.badgeColor;
+  addTaskInput.style.backgroundColor = theme.inputBg;
+  addTaskInput.style.color = theme.inputColor;
 
   const allTasks = document.querySelectorAll(".todo__new-task");
   allTasks.forEach(task => {
-    task.style.backgroundColor = isDarkTheme ? "var(--gray-500)" : "var(--blue-dark)";
-    task.style.color = isDarkTheme ? "var(--gray-100)" : "var(--gray-700)";
+    task.style.backgroundColor = theme.bodyBg;
+    task.style.color = theme.bodyColor;
   });
 }
 
 switchTheme.addEventListener("click", () => {
   isDarkTheme = !isDarkTheme;
-  updateThemeUI(); 
+  updateThemeUI(isDarkTheme); 
 });
 
 function updateCounter () {
@@ -108,6 +135,7 @@ e.preventDefault();
 
 if (addTaskInput.value.trim() === "") {
     alert ("Adicione uma tarefa");
+    addTaskInput.value = "";
     return
 } else {
     emptyStorage.classList.add("hidden");
