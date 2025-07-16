@@ -16,8 +16,8 @@ let completedTasks = 0;
 
 function updateThemeUI() {
   switchTheme.setAttribute("src", isDarkTheme
-    ? "/ToDO-List/assets/icons/icon-dark.png"
-    : "/ToDO-List/assets/icons/icon-light.png");
+    ? "/assets/icons/icon-dark.png"
+    : "/assets/icons/icon-light.png");
 
   header.style.backgroundColor = isDarkTheme ? "var(--gray-700)" : "var(--gray-200)";
   document.body.style.backgroundColor = isDarkTheme ? "var(--gray-600)" : "var(--gray-100)";
@@ -65,7 +65,7 @@ function createNewTask(text, container) {
     newTaskContent.textContent = text;
 
     const newTaskImg = createElement("img", "todo__new-task-img", newTask);
-    newTaskImg.src = "/ToDO-List/assets/icons/trash-noAct.svg";
+    newTaskImg.src = "/assets/icons/trash-noAct.svg";
     newTaskImg.alt = "Trash icon";
 
     checkBox.addEventListener("change", () => {
@@ -82,11 +82,11 @@ function createNewTask(text, container) {
     })
 
     newTaskImg.addEventListener("mouseenter", () => {
-        newTaskImg.src = "/ToDO-List/assets/icons/trash-act.svg";
+        newTaskImg.src = "/assets/icons/trash-act.svg";
       });
       
     newTaskImg.addEventListener("mouseleave", () => {
-        newTaskImg.src = "/ToDO-List/assets/icons/trash-noAct.svg";
+        newTaskImg.src = "/assets/icons/trash-noAct.svg";
       });
 
     newTaskImg.addEventListener ("click", () => {
