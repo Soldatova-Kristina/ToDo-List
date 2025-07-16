@@ -90,13 +90,16 @@ function createNewTask(text, container) {
       });
 
     newTaskImg.addEventListener ("click", () => {
-        newTask.remove();
-        totalTasks--;
-
-        if (container.children.length === 0) {
-            emptyStorage.classList.remove("hidden");
-          }
-          updateCounter();
+      const checkbox = newTask.querySelector('input[type="checkbox"]');
+      if (checkbox.checked) {
+          completedTasks--;
+      }
+      newTask.remove();
+      totalTasks--;
+      if (container.children.length === 0) {
+          emptyStorage.classList.remove("hidden");
+      }
+      updateCounter();
     })
 }
 
