@@ -132,6 +132,11 @@ function filterTasks(filter) {
 
 document.querySelectorAll(".todo__tasks-filter-btn").forEach((btn) => {
   btn.addEventListener("click", () => {
+    document.querySelectorAll(".todo__tasks-filter-btn").forEach((b) => {
+      b.classList.remove("todo__tasks-filter-btn-active");
+    });
+ 
+    btn.classList.add("todo__tasks-filter-btn-active");
     filterTasks(btn.textContent.trim());
   });
 });

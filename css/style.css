@@ -217,7 +217,7 @@
     width: fit-content;
 }
 
-.todo__tasks-filter-btn:hover {
+.todo__tasks-filter-btn:hover, .todo__tasks-filter-btn-active{
     color: var(--gray-200);
 }
 
