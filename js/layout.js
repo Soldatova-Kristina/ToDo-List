@@ -6,12 +6,12 @@ export function createHeader () {
     logo.classList.add("header__logo");
     
     const logoImg = document.createElement("img")
-    logoImg.src = "assets/icons/Logo.svg";
+    logoImg.src = "/ToDO-List/assets/icons/Logo.svg";
     logoImg.alt = "Логотип";
     
     const switchTheme = document.createElement("img");
     switchTheme.classList.add("todo__switch-theme");
-    switchTheme.src = "/assets/icons/icon dark.png";
+    switchTheme.src = "/ToDO-List/assets/icons/icon-dark.png";
     switchTheme.alt = "Icon dark";
     switchTheme.style.width = "40px";
     switchTheme.style.height = "40px";
@@ -68,7 +68,7 @@ export function createLayout () {
     addTaskBtn.textContent = "Criar";
     
     const addTaskBtnImg = createElement("img", null, addTaskBtn);
-    addTaskBtnImg.src = "/assets/icons/icon plus.svg";
+    addTaskBtnImg.src = "/ToDO-List/assets/icons/icon-plus.svg";
     addTaskBtnImg.alt = "Icon plus";
     
     const allTasksCount = createElement("p", "todo__tasks-count-all", countContainer);
@@ -86,7 +86,7 @@ export function createLayout () {
     const emptyStorage = createElement("div", "todo__tasks-empty", storageContainer);
     
     const emptyStorageImg = createElement("img", "todo__tasks-empty-img", emptyStorage);
-    emptyStorageImg.src = "/assets/icons/Clipboard.svg";
+    emptyStorageImg.src = "/ToDO-List/assets/icons/Clipboard.svg";
     emptyStorageImg.alt = "clipboard icon";
     
     const emptyStorageText1 = createElement("p", "todo__tasks-empty-text-1", emptyStorage);

@@ -10,12 +10,36 @@ export function initLogic ({
     taskContainer,
   }) {
 
-
+let isDarkTheme = true;
 let totalTasks = 0;
 let completedTasks = 0;
-const taskElements = [];
-let isLightTheme = true;
 
+function updateThemeUI() {
+  switchTheme.setAttribute("src", isDarkTheme
+    ? "/ToDO-List/assets/icons/icon-dark.png"
+    : "/ToDO-List/assets/icons/icon-light.png");
+
+  header.style.backgroundColor = isDarkTheme ? "var(--gray-700)" : "var(--gray-200)";
+  document.body.style.backgroundColor = isDarkTheme ? "var(--gray-600)" : "var(--gray-100)";
+  document.body.style.color = isDarkTheme ? "var(--gray-100)" : "var(--gray-700)";
+  allTasksCountBadge.style.backgroundColor = isDarkTheme ? "var(--gray-400)" : "var(--gray-200)";
+  allTasksCountBadge.style.color = isDarkTheme ? "var(--gray-100)" : "var(--gray-700)";
+  doneTasksCountBadge.style.backgroundColor = isDarkTheme ? "var(--gray-400)" : "var(--gray-200)";
+  doneTasksCountBadge.style.color = isDarkTheme ? "var(--gray-100)" : "var(--gray-700)";
+  addTaskInput.style.backgroundColor = isDarkTheme ? "var(--gray-500)" : "var(--gray-200)";
+  addTaskInput.style.color = isDarkTheme ? "var(--gray-100)" : "var(--gray-700)";
+
+  const allTasks = document.querySelectorAll(".todo__new-task");
+  allTasks.forEach(task => {
+    task.style.backgroundColor = isDarkTheme ? "var(--gray-500)" : "var(--blue-dark)";
+    task.style.color = isDarkTheme ? "var(--gray-100)" : "var(--gray-700)";
+  });
+}
+
+switchTheme.addEventListener("click", () => {
+  isDarkTheme = !isDarkTheme;
+  updateThemeUI(); 
+});
 
 function updateCounter () {
     allTasksCountBadge.textContent = totalTasks;
@@ -25,9 +49,14 @@ function updateCounter () {
 function createNewTask(text, container) {
     
     const newTask = createElement("div", "todo__new-task", container);
-    taskElements.push(newTask);
     totalTasks++;
     updateCounter();
+
+    if (isDarkTheme) {
+      newTask.style.backgroundColor = ("var(--gray-500)")
+    } else {
+      newTask.style.backgroundColor = ("var(--blue-dark)");
+    }
 
     const checkBox = createElement("input", "todo__check-box", newTask);
     checkBox.type = "checkbox";
@@ -36,7 +65,7 @@ function createNewTask(text, container) {
     newTaskContent.textContent = text;
 
     const newTaskImg = createElement("img", "todo__new-task-img", newTask);
-    newTaskImg.src = "./assets/icons/trash noAct.svg";
+    newTaskImg.src = "/ToDO-List/assets/icons/trash-noAct.svg";
     newTaskImg.alt = "Trash icon";
 
     checkBox.addEventListener("change", () => {
@@ -53,11 +82,11 @@ function createNewTask(text, container) {
     })
 
     newTaskImg.addEventListener("mouseenter", () => {
-        newTaskImg.src = "./assets/icons/trash act.svg";
+        newTaskImg.src = "/ToDO-List/assets/icons/trash-act.svg";
       });
       
     newTaskImg.addEventListener("mouseleave", () => {
-        newTaskImg.src = "./assets/icons/trash noAct.svg";
+        newTaskImg.src = "/ToDO-List/assets/icons/trash-noAct.svg";
       });
 
     newTaskImg.addEventListener ("click", () => {
@@ -75,7 +104,6 @@ function createNewTask(text, container) {
 addTaskBtn.addEventListener("click", (e) => {
 e.preventDefault(); 
 
-
 if (addTaskInput.value.trim() === "") {
     alert ("Adicione uma tarefa");
     return
@@ -86,42 +114,4 @@ if (addTaskInput.value.trim() === "") {
 }
 });
 
-switchTheme.addEventListener("click", () => {
-  isLightTheme = !isLightTheme;
-  if (isLightTheme) {
-    switchTheme.src = "./assets/icons/icon dark.png";
-
-    header.style.backgroundColor = "var(--gray-100)";
-
-    document.body.style.backgroundColor = "var(--gray-100)";
-    document.body.style.color = "var(--gray-700)";
-    
-    allTasksCountBadge.style.backgroundColor = "var(--gray-200)";
-    allTasksCountBadge.style.color = "var(--gray-700)";
-  
-    doneTasksCountBadge.style.backgroundColor = "var(--gray-200)";
-    doneTasksCountBadge.style.color = "var(--gray-700)";
-  
-    addTaskInput.style.backgroundColor = "var(--gray-200)";
-    addTaskInput.style.color = "var(--gray-700)";
-  
-  } else {
-    switchTheme.src = "./assets/icons/icon light.png";
-
-    header.style.backgroundColor = "var(--gray-700)";
-
-    document.body.style.backgroundColor = "var(--gray-600)";
-    document.body.style.color = "var(--gray-100)";
-  
-    allTasksCountBadge.style.backgroundColor = "var(--gray-400)";
-    allTasksCountBadge.style.color = "var(--gray-100)";
-  
-    doneTasksCountBadge.style.backgroundColor = "var(--gray-400)";
-    doneTasksCountBadge.style.color = "var(--gray-100)";
-  
-    addTaskInput.style.backgroundColor = "var(--gray-500)";
-    addTaskInput.style.color = "var(--gray-100)";
-  }
-
-});
   }
