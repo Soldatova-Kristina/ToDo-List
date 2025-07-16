@@ -6,7 +6,7 @@
 ```md
 ## Демонстрация
 
-![Preview](https://raw.githubusercontent.com/Soldatova-Kristina/ToDo-List/main/assets/preview.png)
+https://soldatova-kristina.github.io/ToDo-List/
 
 ##  Стек технологий
 
